@@ -1,7 +1,7 @@
 package com.zunza.pick.member.entity;
 
 import com.zunza.pick.common.BaseEntity;
-import com.zunza.pick.constant.MemberType;
+import com.zunza.pick.member.constant.MemberType;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
