@@ -1,6 +1,7 @@
 package com.zunza.pick.member.controller;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -24,10 +25,10 @@ public class AuthController {
 	private final MemberMapper mapper;
 
 	@PostMapping("/api/auth/signup")
-	@ResponseStatus(HttpStatus.CREATED)
-	public void signup(@Valid @RequestBody SignupRequest signupRequest) {
+	public ResponseEntity<Void> signup(@Valid @RequestBody SignupRequest signupRequest) {
 		SignupDto signupDto = mapper.toSignupDto(signupRequest);
 		authService.signup(signupDto);
+		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 
 	@PostMapping("api/auth/signup/email/verify-duplicate")
