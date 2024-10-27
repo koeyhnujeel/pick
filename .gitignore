@@ -105,6 +105,8 @@ Temporary Items
 **/build/
 !src/**/build/
 
+application-sensitive.yml
+
 # Ignore Gradle GUI config
 gradle-app.setting
 
