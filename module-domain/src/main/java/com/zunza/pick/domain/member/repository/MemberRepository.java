@@ -10,6 +10,6 @@ import com.zunza.pick.domain.member.entity.Member;
 @Repository
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
-	@Query("SELECT COUNT(u) > 0 FROM User u WHERE u.email = :email")
+	@Query("SELECT COUNT(m) > 0 FROM Member m WHERE m.email = :email")
 	Boolean isDuplicateEmail(@Param("email") String email);
 }
