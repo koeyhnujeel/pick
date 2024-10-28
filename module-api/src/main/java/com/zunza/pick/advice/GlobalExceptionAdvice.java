@@ -8,6 +8,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.zunza.pick.exception.CustomException;
 import com.zunza.pick.response.ErrorResponse;
 
 @RestControllerAdvice
@@ -25,12 +26,22 @@ public class GlobalExceptionAdvice {
 		int code = e.getStatusCode().value();
 
 		ErrorResponse errorResponse = ErrorResponse.builder()
-			.success(false)
 			.message(message)
 			.messages(messages)
 			.code(code)
 			.build();
 
 		return ResponseEntity.status(code).body(errorResponse);
+	}
+
+	@ExceptionHandler(CustomException.class)
+	public ResponseEntity<ErrorResponse> CustomExceptionHandler(CustomException e) {
+
+		ErrorResponse errorResponse = ErrorResponse.builder()
+			.message(e.getMessage())
+			.code(e.getStatusCode())
+			.build();
+
+		return ResponseEntity.status(e.getStatusCode()).body(errorResponse);
 	}
 }
