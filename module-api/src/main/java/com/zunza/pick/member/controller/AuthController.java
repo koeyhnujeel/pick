@@ -4,7 +4,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.zunza.pick.domain.member.dto.SignupDto;
@@ -32,9 +31,9 @@ public class AuthController {
 	}
 
 	@PostMapping("api/auth/signup/email/verify-duplicate")
-	@ResponseStatus(HttpStatus.OK)
-	public void verifyDuplicateEmail(@Valid @RequestBody VerifyEmailRequest verifyEmailRequest) {
+	public ResponseEntity<Void> verifyDuplicateEmail(@Valid @RequestBody VerifyEmailRequest verifyEmailRequest) {
 		VerifyEmailDto verifyEmailDto = mapper.toVerifyEmailDto(verifyEmailRequest);
 		authService.verifyDuplicateEmail(verifyEmailDto);
+		return ResponseEntity.status(HttpStatus.OK).build();
 	}
 }
