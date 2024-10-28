@@ -6,6 +6,7 @@ import com.zunza.pick.domain.member.dto.SignupDto;
 import com.zunza.pick.domain.member.dto.VerifyEmailDto;
 import com.zunza.pick.domain.member.entity.Member;
 import com.zunza.pick.domain.member.repository.MemberRepository;
+import com.zunza.pick.exception.DuplicateEmailException;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,7 +24,7 @@ public class AuthService {
 	public void verifyDuplicateEmail(VerifyEmailDto verifyEmailDto) {
 		Boolean duplicateEmail = memberRepository.isDuplicateEmail(verifyEmailDto.getEmail());
 		if (duplicateEmail) {
-			throw new IllegalArgumentException("사용 중인 이메일 입니다.");
+			throw new DuplicateEmailException();
 		}
 	}
 }
