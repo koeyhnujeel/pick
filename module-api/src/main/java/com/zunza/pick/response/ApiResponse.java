@@ -1,6 +1,6 @@
 package com.zunza.pick.response;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -10,19 +10,15 @@ public class ApiResponse<T> {
 
 	private boolean success;
 
-	@JsonIgnore
+	@JsonInclude(JsonInclude.Include.NON_NULL)
 	private T data;
-
-	@JsonIgnore
-	private String message;
 
 	private int code;
 
 	@Builder
-	public ApiResponse(boolean success, T data, String message, int code) {
+	public ApiResponse(boolean success, T data, int code) {
 		this.success = success;
 		this.data = data;
-		this.message = message;
 		this.code = code;
 	}
 }
