@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SignupRequest {
 
-	@Email(message = "유요한 이메일 형식이 아닙니다.")
+	@Email(message = "유효한 이메일 형식이 아닙니다.")
 	@NotBlank(message = "이메일을 입력해 주세요.")
 	private String email;
 
