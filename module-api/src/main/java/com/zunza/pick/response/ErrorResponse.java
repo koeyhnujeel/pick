@@ -10,7 +10,7 @@ import lombok.Getter;
 @Getter
 public class ErrorResponse {
 
-	private boolean success;
+	private boolean success = false;
 
 	@JsonInclude(JsonInclude.Include.NON_NULL)
 	private String message;
@@ -21,8 +21,7 @@ public class ErrorResponse {
 	private int code;
 
 	@Builder
-	public ErrorResponse(boolean success, String message, List<String> messages, int code) {
-		this.success = success;
+	public ErrorResponse(String message, List<String> messages, int code) {
 		this.message = message;
 		this.messages = messages;
 		this.code = code;
