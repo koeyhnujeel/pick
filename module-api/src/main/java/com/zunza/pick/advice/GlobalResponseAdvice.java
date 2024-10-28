@@ -6,6 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
@@ -21,7 +22,7 @@ public class GlobalResponseAdvice implements ResponseBodyAdvice<Object> {
 
 	@Override
 	public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {
-		return true;
+		return returnType.getContainingClass().isAnnotationPresent(RestController.class);
 	}
 
 	@Override
@@ -35,7 +36,6 @@ public class GlobalResponseAdvice implements ResponseBodyAdvice<Object> {
 			return ApiResponse.builder()
 				.success(true)
 				.data(null)
-				.message(null)
 				.code(statusCode)
 				.build();
 		}
@@ -47,7 +47,6 @@ public class GlobalResponseAdvice implements ResponseBodyAdvice<Object> {
 		return ApiResponse.builder()
 			.success(true)
 			.data(body)
-			.message(null)
 			.code(statusCode)
 			.build();
 	}
