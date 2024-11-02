@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.zunza.pick.member.dto.SignupDto;
 import com.zunza.pick.member.dto.VerifyEmailDto;
+import com.zunza.pick.member.dto.VerifyNicknameDto;
+import com.zunza.pick.member.dto.VerifyPhoneDto;
+import com.zunza.pick.member.request.VerifyNicknameRequest;
+import com.zunza.pick.member.request.VerifyPhoneRequest;
 import com.zunza.pick.member.service.AuthService;
 import com.zunza.pick.member.request.SignupRequest;
 import com.zunza.pick.member.request.VerifyEmailRequest;
@@ -32,6 +36,20 @@ public class AuthController {
 	public ResponseEntity<Void> verifyDuplicateEmail(@Valid @RequestBody VerifyEmailRequest verifyEmailRequest) {
 		VerifyEmailDto verifyEmailDto = VerifyEmailDto.from(verifyEmailRequest);
 		authService.verifyDuplicateEmail(verifyEmailDto);
+		return ResponseEntity.status(HttpStatus.OK).build();
+	}
+
+	@PostMapping("api/auth/signup/nickname/verify-duplicate")
+	public ResponseEntity<Void> verifyDuplicateNickname(@Valid @RequestBody VerifyNicknameRequest verifyNicknameRequest) {
+		VerifyNicknameDto verifyNicknameDto = VerifyNicknameDto.from(verifyNicknameRequest);
+		authService.verifyDuplicateNickname(verifyNicknameDto);
+		return ResponseEntity.status(HttpStatus.OK).build();
+	}
+
+	@PostMapping("api/auth/signup/phone/verify-duplicate")
+	public ResponseEntity<Void> verifyDuplicatePhone(@Valid @RequestBody VerifyPhoneRequest verifyPhoneRequest) {
+		VerifyPhoneDto verifyPhoneDto = VerifyPhoneDto.from(verifyPhoneRequest);
+		authService.verifyDuplicatePhone(verifyPhoneDto);
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
 }
