@@ -12,4 +12,10 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
 	@Query("SELECT COUNT(m) > 0 FROM Member m WHERE m.email = :email")
 	Boolean isDuplicateEmail(@Param("email") String email);
+
+	@Query("SELECT COUNT(m) > 0 FROM Member m WHERE m.nickname = :nickname")
+	Boolean isDuplicateNickname(@Param("nickname") String nickname);
+
+	@Query("SELECT COUNT(m) > 0 FROM Member m WHERE m.phone = :phone")
+	Boolean isDuplicatePhone(@Param("phone") String phone);
 }
