@@ -1,5 +1,1 @@
 rootProject.name = 'pick'
-
-include("module-common")
-include("module-domain")
-include("module-api")
