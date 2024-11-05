@@ -20,7 +20,10 @@ public class CustomUserDetails implements UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		MemberType memberType = member.getMemberType();
-		String authority = memberType.equals(MemberType.CUSTOMER) ? "ROLE_USER" : "ROLE_ADMIN";
+
+		String authority = memberType.equals(MemberType.CUSTOMER) ? "ROLE_CUSTOMER" :
+			memberType.equals(MemberType.SELLER) ? "ROLE_SELLER" : "ROLE_ADMIN";
+
 		return List.of(new SimpleGrantedAuthority(authority));
 	}
 
