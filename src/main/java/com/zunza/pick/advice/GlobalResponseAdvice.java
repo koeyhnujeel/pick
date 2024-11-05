@@ -34,7 +34,6 @@ public class GlobalResponseAdvice implements ResponseBodyAdvice<Object> {
 
 		if (body == null) {
 			return ApiResponse.builder()
-				.success(true)
 				.data(null)
 				.code(statusCode)
 				.build();
@@ -45,7 +44,6 @@ public class GlobalResponseAdvice implements ResponseBodyAdvice<Object> {
 		}
 
 		return ApiResponse.builder()
-			.success(true)
 			.data(body)
 			.code(statusCode)
 			.build();
