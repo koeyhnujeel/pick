@@ -8,7 +8,7 @@ import lombok.Getter;
 @Getter
 public class ApiResponse<T> {
 
-	private boolean success;
+	private boolean success = true;
 
 	@JsonInclude(JsonInclude.Include.NON_NULL)
 	private T data;
@@ -16,8 +16,7 @@ public class ApiResponse<T> {
 	private int code;
 
 	@Builder
-	public ApiResponse(boolean success, T data, int code) {
-		this.success = success;
+	public ApiResponse(T data, int code) {
 		this.data = data;
 		this.code = code;
 	}
