@@ -16,9 +16,9 @@ public class TokenRedisRepository {
 	private final RedisTemplate<String, String> redisTemplate;
 	private final JwtTokenProvider jwtTokenProvider;
 
-	public void saveRefreshToken(String email, String refreshToken) {
+	public void saveRefreshToken(String memberId, String refreshToken) {
 		redisTemplate.opsForValue()
-			.set("RT:" + email,
+			.set("RT:" + memberId,
 				refreshToken,
 				jwtTokenProvider.getRefreshTokenValidity(),
 				TimeUnit.MILLISECONDS);

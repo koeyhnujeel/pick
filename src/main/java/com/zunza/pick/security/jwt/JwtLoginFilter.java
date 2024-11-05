@@ -57,14 +57,13 @@ public class JwtLoginFilter extends UsernamePasswordAuthenticationFilter {
 		Authentication authResult) throws IOException {
 
 		CustomUserDetails userDetails = (CustomUserDetails)authResult.getPrincipal();
-		String email = userDetails.getUsername();
 		String memberId = userDetails.getUserId().toString();
 		List<String> roles = userDetails.authoritiesToStringList();
 
 		String accessToken = jwtTokenProvider.createAccessToken(memberId, roles);
 		String refreshToken = jwtTokenProvider.createRefreshToken();
 
-		tokenRedisRepository.saveRefreshToken(email, refreshToken);
+		tokenRedisRepository.saveRefreshToken(memberId, refreshToken);
 
 		TokenResponse tokenResponse = new TokenResponse(accessToken, refreshToken);
 		ApiResponse<TokenResponse> apiResponse = ApiResponse.<TokenResponse>builder()
