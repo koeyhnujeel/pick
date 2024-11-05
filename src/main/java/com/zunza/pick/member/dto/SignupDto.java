@@ -39,4 +39,8 @@ public class SignupDto {
 			.memberType(signupRequest.getMemberType())
 			.build();
 	}
+
+	public void setEncodedPassword(String encodedPassword) {
+		this.password = encodedPassword;
+	}
 }
