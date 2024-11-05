@@ -1,5 +1,6 @@
 package com.zunza.pick.member.service;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.zunza.pick.exception.DuplicateNicknameException;
@@ -18,9 +19,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AuthService {
 
+	private final PasswordEncoder passwordEncoder;
 	private final MemberRepository memberRepository;
 
 	public void signup(SignupDto signupDto) {
+		signupDto.setEncodedPassword(passwordEncoder.encode(signupDto.getPassword()));
 		Member member = Member.from(signupDto);
 		memberRepository.save(member);
 	}
