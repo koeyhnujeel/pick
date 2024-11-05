@@ -52,11 +52,12 @@ public class JwtTokenProvider {
 			.compact();
 	}
 
-	public String createRefreshToken() {
+	public String createRefreshToken(String memberId) {
 		Date now = new Date();
 		Date validity = new Date(now.getTime() + refreshTokenValidity);
 
 		return Jwts.builder()
+			.setSubject(memberId)
 			.setIssuedAt(now)
 			.setExpiration(validity)
 			.signWith(getKey(), SignatureAlgorithm.HS256)

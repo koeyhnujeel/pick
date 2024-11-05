@@ -61,7 +61,7 @@ public class JwtLoginFilter extends UsernamePasswordAuthenticationFilter {
 		List<String> roles = userDetails.authoritiesToStringList();
 
 		String accessToken = jwtTokenProvider.createAccessToken(memberId, roles);
-		String refreshToken = jwtTokenProvider.createRefreshToken();
+		String refreshToken = jwtTokenProvider.createRefreshToken(memberId);
 
 		tokenRedisRepository.saveRefreshToken(memberId, refreshToken);
 
