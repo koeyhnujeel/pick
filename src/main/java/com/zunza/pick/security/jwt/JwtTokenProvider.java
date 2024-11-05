@@ -3,19 +3,24 @@ package com.zunza.pick.security.jwt;
 import java.security.Key;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import lombok.RequiredArgsConstructor;
+import io.jsonwebtoken.security.SignatureException;
 
 @Component
-@RequiredArgsConstructor
 public class JwtTokenProvider {
 
 	@Value("${jwt.secret}")
@@ -60,5 +65,39 @@ public class JwtTokenProvider {
 
 	public long getRefreshTokenValidity() {
 		return refreshTokenValidity;
+	}
+
+	public boolean validateToken(String accessToken) {
+		try {
+			Jwts.parserBuilder()
+				.setSigningKey(getKey())
+				.build()
+				.parseClaimsJws(accessToken);
+			return true;
+		} catch (ExpiredJwtException e) {
+			throw new ExpiredJwtException(null, null, "만료된 토큰입니다.");
+		} catch (SignatureException e) {
+			throw new SignatureException("변조된 토큰입니다.");
+		}
+	}
+
+	public Authentication getAuthentication(String accessToken) {
+		Claims claims = getClaims(accessToken);
+		Long memberId = Long.parseLong(claims.getSubject());
+		List<String> roles = claims.get("roles", List.class);
+
+		List<GrantedAuthority> authorities = roles.stream()
+			.map(SimpleGrantedAuthority::new)
+			.collect(Collectors.toList());
+
+		return new UsernamePasswordAuthenticationToken(memberId, null, authorities);
+	}
+
+	private Claims getClaims(String accessToken) {
+		return Jwts.parserBuilder()
+			.setSigningKey(getKey())
+			.build()
+			.parseClaimsJws(accessToken)
+			.getBody();
 	}
 }
