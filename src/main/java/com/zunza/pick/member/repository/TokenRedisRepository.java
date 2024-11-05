@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.zunza.pick.jwt.JwtTokenProvider;
+import com.zunza.pick.security.jwt.JwtTokenProvider;
 
 import lombok.RequiredArgsConstructor;
 

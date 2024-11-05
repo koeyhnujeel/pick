@@ -14,8 +14,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.zunza.pick.jwt.JwtLoginFilter;
-import com.zunza.pick.jwt.JwtTokenProvider;
+import com.zunza.pick.security.jwt.JwtLoginFilter;
+import com.zunza.pick.security.jwt.JwtTokenProvider;
 import com.zunza.pick.member.repository.TokenRedisRepository;
 
 import lombok.RequiredArgsConstructor;

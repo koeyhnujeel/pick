@@ -1,4 +1,4 @@
-package com.zunza.pick.jwt;
+package com.zunza.pick.security.jwt;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
