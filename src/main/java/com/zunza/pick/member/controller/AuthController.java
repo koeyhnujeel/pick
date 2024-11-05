@@ -32,21 +32,21 @@ public class AuthController {
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 
-	@PostMapping("api/auth/signup/email/verify-duplicate")
+	@PostMapping("/api/auth/signup/email/verify-duplicate")
 	public ResponseEntity<Void> verifyDuplicateEmail(@Valid @RequestBody VerifyEmailRequest verifyEmailRequest) {
 		VerifyEmailDto verifyEmailDto = VerifyEmailDto.from(verifyEmailRequest);
 		authService.verifyDuplicateEmail(verifyEmailDto);
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
 
-	@PostMapping("api/auth/signup/nickname/verify-duplicate")
+	@PostMapping("/api/auth/signup/nickname/verify-duplicate")
 	public ResponseEntity<Void> verifyDuplicateNickname(@Valid @RequestBody VerifyNicknameRequest verifyNicknameRequest) {
 		VerifyNicknameDto verifyNicknameDto = VerifyNicknameDto.from(verifyNicknameRequest);
 		authService.verifyDuplicateNickname(verifyNicknameDto);
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
 
-	@PostMapping("api/auth/signup/phone/verify-duplicate")
+	@PostMapping("/api/auth/signup/phone/verify-duplicate")
 	public ResponseEntity<Void> verifyDuplicatePhone(@Valid @RequestBody VerifyPhoneRequest verifyPhoneRequest) {
 		VerifyPhoneDto verifyPhoneDto = VerifyPhoneDto.from(verifyPhoneRequest);
 		authService.verifyDuplicatePhone(verifyPhoneDto);
