@@ -14,6 +14,9 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.zunza.pick.security.jwt.JwtAccessDeniedHandler;
+import com.zunza.pick.security.jwt.JwtAuthenticationEntryPoint;
+import com.zunza.pick.security.jwt.JwtAuthenticationFilter;
 import com.zunza.pick.security.jwt.JwtLoginFilter;
 import com.zunza.pick.security.jwt.JwtTokenProvider;
 import com.zunza.pick.member.repository.TokenRedisRepository;
@@ -44,6 +47,11 @@ public class SecurityConfig {
 	}
 
 	@Bean
+	public JwtAuthenticationFilter jwtAuthenticationFilter() {
+		return new JwtAuthenticationFilter(jwtTokenProvider, objectMapper);
+	}
+
+	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http
 			.csrf(AbstractHttpConfigurer::disable)
@@ -53,10 +61,18 @@ public class SecurityConfig {
 
 			.authorizeHttpRequests(authorize -> authorize
 				.requestMatchers("/api/auth/**").permitAll()
+				.requestMatchers("/test1").hasRole("CUSTOMER")
 			)
 
-			.addFilterAt(jwtLoginFilter(),
-				UsernamePasswordAuthenticationFilter.class);
+			.addFilterBefore(jwtLoginFilter(),
+				UsernamePasswordAuthenticationFilter.class)
+			.addFilterAfter(jwtAuthenticationFilter(),
+				UsernamePasswordAuthenticationFilter.class)
+
+			.exceptionHandling(exceptionHandling -> exceptionHandling
+				.authenticationEntryPoint(new JwtAuthenticationEntryPoint(objectMapper))
+				.accessDeniedHandler(new JwtAccessDeniedHandler(objectMapper))
+			);
 
 		return http.build();
 	}
