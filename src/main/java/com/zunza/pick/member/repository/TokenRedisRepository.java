@@ -16,11 +16,17 @@ public class TokenRedisRepository {
 	private final RedisTemplate<String, String> redisTemplate;
 	private final JwtTokenProvider jwtTokenProvider;
 
+	private static final String KEY_PREFIX = "RT:";
+
 	public void saveRefreshToken(String memberId, String refreshToken) {
 		redisTemplate.opsForValue()
-			.set("RT:" + memberId,
+			.set(KEY_PREFIX + memberId,
 				refreshToken,
 				jwtTokenProvider.getRefreshTokenValidity(),
 				TimeUnit.MILLISECONDS);
+	}
+
+	public String findRefreshTokenById(String memberId) {
+		return redisTemplate.opsForValue().get(KEY_PREFIX + memberId);
 	}
 }
