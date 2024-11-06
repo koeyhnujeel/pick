@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
@@ -68,7 +69,7 @@ public class JwtTokenProvider {
 		return refreshTokenValidity;
 	}
 
-	public boolean validateToken(String accessToken) {
+	public boolean validateAccessToken(String accessToken) {
 		try {
 			Jwts.parserBuilder()
 				.setSigningKey(getKey())
@@ -79,6 +80,18 @@ public class JwtTokenProvider {
 			throw new ExpiredJwtException(null, null, "만료된 토큰입니다.");
 		} catch (SignatureException e) {
 			throw new SignatureException("변조된 토큰입니다.");
+		}
+	}
+
+	public boolean validateRefreshToken(String refreshToken) {
+		try {
+			Jwts.parserBuilder()
+				.setSigningKey(getKey())
+				.build()
+				.parseClaimsJws(refreshToken);
+			return true;
+		} catch (JwtException | IllegalArgumentException e) {
+			return false;
 		}
 	}
 
@@ -94,11 +107,16 @@ public class JwtTokenProvider {
 		return new UsernamePasswordAuthenticationToken(memberId, null, authorities);
 	}
 
-	private Claims getClaims(String accessToken) {
+	private Claims getClaims(String token) {
 		return Jwts.parserBuilder()
 			.setSigningKey(getKey())
 			.build()
-			.parseClaimsJws(accessToken)
+			.parseClaimsJws(token)
 			.getBody();
+	}
+
+	public String getSubject(String token) {
+		Claims claims = getClaims(token);
+		return claims.getSubject();
 	}
 }
