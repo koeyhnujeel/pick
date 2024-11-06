@@ -1,17 +1,26 @@
 package com.zunza.pick.member.service;
 
+import java.util.List;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.zunza.pick.exception.DuplicateNicknameException;
 import com.zunza.pick.exception.DuplicatePhoneException;
+import com.zunza.pick.exception.InvalidRefreshTokenException;
+import com.zunza.pick.exception.MemberNotFoundException;
+import com.zunza.pick.member.constant.MemberType;
 import com.zunza.pick.member.dto.SignupDto;
+import com.zunza.pick.member.dto.RefreshTokenDto;
 import com.zunza.pick.member.dto.VerifyEmailDto;
 import com.zunza.pick.member.dto.VerifyNicknameDto;
 import com.zunza.pick.member.dto.VerifyPhoneDto;
 import com.zunza.pick.member.entity.Member;
 import com.zunza.pick.member.repository.MemberRepository;
 import com.zunza.pick.exception.DuplicateEmailException;
+import com.zunza.pick.member.repository.TokenRedisRepository;
+import com.zunza.pick.member.response.TokenResponse;
+import com.zunza.pick.security.jwt.JwtTokenProvider;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,6 +30,8 @@ public class AuthService {
 
 	private final PasswordEncoder passwordEncoder;
 	private final MemberRepository memberRepository;
+	private final JwtTokenProvider jwtTokenProvider;
+	private final TokenRedisRepository tokenRedisRepository;
 
 	public void signup(SignupDto signupDto) {
 		signupDto.setEncodedPassword(passwordEncoder.encode(signupDto.getPassword()));
@@ -47,5 +58,35 @@ public class AuthService {
 		if (duplicatePhone) {
 			throw new DuplicatePhoneException();
 		}
+	}
+
+	public TokenResponse tokenRefresh(RefreshTokenDto refreshTokenDto) {
+		String refreshToken = refreshTokenDto.getRefreshToken();
+		if (!jwtTokenProvider.validateRefreshToken(refreshToken)) {
+			throw new InvalidRefreshTokenException();
+		}
+
+		String memberId = jwtTokenProvider.getSubject(refreshToken);
+		String savedRefreshToken = tokenRedisRepository.findRefreshTokenById(memberId);
+
+		if (!refreshToken.equals(savedRefreshToken)) {
+			throw new InvalidRefreshTokenException();
+		}
+
+		Member member = memberRepository.findById(Long.parseLong(memberId))
+			.orElseThrow(MemberNotFoundException::new);
+
+		String role = getRole(member.getMemberType());
+		String newAccessToken = jwtTokenProvider.createAccessToken(memberId, List.of(role));
+		String newRefreshToken = jwtTokenProvider.createRefreshToken(memberId);
+
+		tokenRedisRepository.saveRefreshToken(memberId, newRefreshToken);
+
+		return new TokenResponse(newAccessToken, newRefreshToken);
+	}
+
+	private String getRole(MemberType memberType) {
+		return memberType.equals(MemberType.CUSTOMER) ? "ROLE_CUSTOMER" :
+			memberType.equals(MemberType.SELLER) ? "ROLE_SELLER" : "ROLE_ADMIN";
 	}
 }
