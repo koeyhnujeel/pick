@@ -2,16 +2,21 @@ package com.zunza.pick.member.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.zunza.pick.member.dto.SignupDto;
+import com.zunza.pick.member.dto.RefreshTokenDto;
 import com.zunza.pick.member.dto.VerifyEmailDto;
 import com.zunza.pick.member.dto.VerifyNicknameDto;
 import com.zunza.pick.member.dto.VerifyPhoneDto;
+import com.zunza.pick.member.request.RefreshTokenRequest;
 import com.zunza.pick.member.request.VerifyNicknameRequest;
 import com.zunza.pick.member.request.VerifyPhoneRequest;
+import com.zunza.pick.member.response.TokenResponse;
 import com.zunza.pick.member.service.AuthService;
 import com.zunza.pick.member.request.SignupRequest;
 import com.zunza.pick.member.request.VerifyEmailRequest;
@@ -51,5 +56,12 @@ public class AuthController {
 		VerifyPhoneDto verifyPhoneDto = VerifyPhoneDto.from(verifyPhoneRequest);
 		authService.verifyDuplicatePhone(verifyPhoneDto);
 		return ResponseEntity.status(HttpStatus.OK).build();
+	}
+
+	@PostMapping("/api/auth/token/refresh")
+	public ResponseEntity<TokenResponse> tokenRefresh(@RequestBody RefreshTokenRequest refreshTokenRequest) {
+		RefreshTokenDto refreshTokenDto = RefreshTokenDto.from(refreshTokenRequest);
+		TokenResponse tokenResponse = authService.tokenRefresh(refreshTokenDto);
+		return ResponseEntity.status(HttpStatus.OK).body(tokenResponse);
 	}
 }
