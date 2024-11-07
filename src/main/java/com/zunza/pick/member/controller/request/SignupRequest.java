@@ -37,7 +37,6 @@ public class SignupRequest {
 	@SpecificValue(acceptedValues = "TRUE", message = "닉네임 중복 확인을 진행해 주세요.")
 	private String isNicknameVerified;
 
-
 	@NotBlank(message = "주소를 입력해 주세요.")
 	private String address;
 
@@ -46,7 +45,6 @@ public class SignupRequest {
 
 	@SpecificValue(acceptedValues = "TRUE", message = "번호 중복 확인을 진행해 주세요.")
 	private String isPhoneVerified;
-
 
 	@NotNull(message = "회원 유형을 선택해 주세요.")
 	private MemberType memberType;
