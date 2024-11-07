@@ -1,4 +1,4 @@
-package com.zunza.pick.member.constant;
+package com.zunza.pick.member.entity;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;

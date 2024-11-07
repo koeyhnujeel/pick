@@ -3,7 +3,7 @@ package com.zunza.pick.member.controller.request;
 import org.hibernate.validator.constraints.Length;
 
 import com.zunza.pick.annotations.SpecificValue;
-import com.zunza.pick.member.constant.MemberType;
+import com.zunza.pick.member.entity.MemberType;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

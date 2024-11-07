@@ -9,7 +9,7 @@ import com.zunza.pick.exception.DuplicateNicknameException;
 import com.zunza.pick.exception.DuplicatePhoneException;
 import com.zunza.pick.exception.InvalidRefreshTokenException;
 import com.zunza.pick.exception.MemberNotFoundException;
-import com.zunza.pick.member.constant.MemberType;
+import com.zunza.pick.member.entity.MemberType;
 import com.zunza.pick.member.controller.dto.SignupDto;
 import com.zunza.pick.member.controller.dto.RefreshTokenDto;
 import com.zunza.pick.member.controller.dto.VerifyEmailDto;

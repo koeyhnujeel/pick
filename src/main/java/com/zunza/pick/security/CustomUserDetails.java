@@ -7,7 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.zunza.pick.member.constant.MemberType;
+import com.zunza.pick.member.entity.MemberType;
 import com.zunza.pick.member.entity.Member;
 
 import lombok.RequiredArgsConstructor;
