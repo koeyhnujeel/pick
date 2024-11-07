@@ -2,7 +2,7 @@ package com.zunza.pick.member.entity;
 
 import com.zunza.pick.commons.BaseEntity;
 import com.zunza.pick.member.constant.MemberType;
-import com.zunza.pick.member.dto.SignupDto;
+import com.zunza.pick.member.controller.dto.SignupDto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

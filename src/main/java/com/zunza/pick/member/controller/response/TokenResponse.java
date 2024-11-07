@@ -1,4 +1,4 @@
-package com.zunza.pick.member.response;
+package com.zunza.pick.member.controller.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

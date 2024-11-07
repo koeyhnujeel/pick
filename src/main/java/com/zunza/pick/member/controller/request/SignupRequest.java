@@ -1,4 +1,4 @@
-package com.zunza.pick.member.request;
+package com.zunza.pick.member.controller.request;
 
 import org.hibernate.validator.constraints.Length;
 

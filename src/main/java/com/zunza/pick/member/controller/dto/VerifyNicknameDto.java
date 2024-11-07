@@ -1,7 +1,6 @@
-package com.zunza.pick.member.dto;
+package com.zunza.pick.member.controller.dto;
 
-import com.zunza.pick.member.request.VerifyEmailRequest;
-import com.zunza.pick.member.request.VerifyNicknameRequest;
+import com.zunza.pick.member.controller.request.VerifyNicknameRequest;
 
 import lombok.Getter;
 

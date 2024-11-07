@@ -15,8 +15,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zunza.pick.commons.ApiResponse;
 import com.zunza.pick.commons.ErrorResponse;
 import com.zunza.pick.member.repository.TokenRedisRepository;
-import com.zunza.pick.member.request.LoginRequest;
-import com.zunza.pick.member.response.TokenResponse;
+import com.zunza.pick.member.controller.request.LoginRequest;
+import com.zunza.pick.member.controller.response.TokenResponse;
 import com.zunza.pick.security.CustomUserDetails;
 
 import jakarta.servlet.FilterChain;

@@ -1,6 +1,6 @@
-package com.zunza.pick.member.dto;
+package com.zunza.pick.member.controller.dto;
 
-import com.zunza.pick.member.request.RefreshTokenRequest;
+import com.zunza.pick.member.controller.request.RefreshTokenRequest;
 
 import lombok.Builder;
 import lombok.Getter;

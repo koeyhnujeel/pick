@@ -1,7 +1,7 @@
-package com.zunza.pick.member.dto;
+package com.zunza.pick.member.controller.dto;
 
 import com.zunza.pick.member.constant.MemberType;
-import com.zunza.pick.member.request.SignupRequest;
+import com.zunza.pick.member.controller.request.SignupRequest;
 
 import lombok.Builder;
 import lombok.Getter;
