@@ -32,6 +32,7 @@ public class ObjectStorageService {
 	private String bucketName;
 
 	private static final String FOLDER_PREFIX = "product/";
+	private static final String CONTENT_TYPE_PREFIX = "image/";
 
 	public UploadImageResponse uploadFile(List<MultipartFile> files) throws IOException {
 
@@ -39,11 +40,13 @@ public class ObjectStorageService {
 
 		for (MultipartFile file : files) {
 			try {
-				String key = getKey(file);
+				String originalFilename = file.getOriginalFilename();
+				String ext = getExt(originalFilename);
+				String key = getKey(originalFilename, ext);
 
 				ObjectMetadata metaData = new ObjectMetadata();
 				metaData.setContentLength(file.getSize());
-				metaData.setContentType(file.getContentType());
+				metaData.setContentType(CONTENT_TYPE_PREFIX + ext);
 
 				amazonS3.putObject(
 					new PutObjectRequest(bucketName, key, file.getInputStream(), metaData)
@@ -62,10 +65,13 @@ public class ObjectStorageService {
 		return new UploadImageResponse(images);
 	}
 
-	private String getKey(MultipartFile file) {
-		String originalFilename = file.getOriginalFilename();
-		String ext = "." + originalFilename.substring(originalFilename.indexOf(".") + 1);
-		return FOLDER_PREFIX + UUID.randomUUID() + ext;
+	private String getExt(String originalFilename) {
+		return originalFilename.substring(originalFilename.indexOf(".") + 1);
+	}
+
+	private String getKey(String filename, String ext) {
+		String role = filename.substring(0, filename.indexOf("-") + 1);
+		return FOLDER_PREFIX + role + UUID.randomUUID() + "." + ext;
 	}
 
 	private String getImageUrl(String key) {
