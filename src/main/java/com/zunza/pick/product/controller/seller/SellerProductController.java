@@ -16,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-public class ProductController {
+public class SellerProductController {
 
 	private final ProductService productService;
 
