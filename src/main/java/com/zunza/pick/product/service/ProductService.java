@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.zunza.pick.product.controller.dto.AddProductDto;
+import com.zunza.pick.product.controller.dto.ProductCursor;
 import com.zunza.pick.product.controller.response.AddProductResponse;
+import com.zunza.pick.product.controller.response.ProductsResponse;
 import com.zunza.pick.product.entity.Product;
 import com.zunza.pick.product.entity.ProductImage;
 import com.zunza.pick.product.repository.ProductImageRepository;
@@ -35,5 +37,9 @@ public class ProductService {
 		}
 
 		return AddProductResponse.of(savedProduct, savedProductImageUrls);
+	}
+
+	public List<ProductsResponse> getProducts(ProductCursor productCursor, String sort) {
+		return productRepository.findProducts(productCursor, sort);
 	}
 }
