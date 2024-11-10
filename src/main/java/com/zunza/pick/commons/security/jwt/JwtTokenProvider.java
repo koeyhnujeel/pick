@@ -1,4 +1,4 @@
-package com.zunza.pick.security.jwt;
+package com.zunza.pick.commons.security.jwt;
 
 import java.security.Key;
 import java.util.Date;

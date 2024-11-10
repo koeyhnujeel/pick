@@ -1,8 +1,6 @@
-package com.zunza.pick.commons;
+package com.zunza.pick.annotations;
 
 import java.util.Arrays;
-
-import com.zunza.pick.annotations.SpecificValue;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

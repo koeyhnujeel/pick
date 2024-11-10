@@ -1,10 +1,10 @@
-package com.zunza.pick.security;
+package com.zunza.pick.commons.security;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
-import com.zunza.pick.exception.MemberNotFoundException;
+import com.zunza.pick.commons.advice.exception.MemberNotFoundException;
 import com.zunza.pick.member.entity.Member;
 import com.zunza.pick.member.repository.MemberRepository;
 

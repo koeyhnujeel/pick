@@ -1,4 +1,4 @@
-package com.zunza.pick.security.jwt;
+package com.zunza.pick.commons.security.jwt;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.zunza.pick.commons.ErrorResponse;
+import com.zunza.pick.commons.advice.ErrorResponse;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

@@ -1,4 +1,4 @@
-package com.zunza.pick.config;
+package com.zunza.pick.commons.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,11 +14,11 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.zunza.pick.security.jwt.JwtAccessDeniedHandler;
-import com.zunza.pick.security.jwt.JwtAuthenticationEntryPoint;
-import com.zunza.pick.security.jwt.JwtAuthenticationFilter;
-import com.zunza.pick.security.jwt.JwtLoginFilter;
-import com.zunza.pick.security.jwt.JwtTokenProvider;
+import com.zunza.pick.commons.security.jwt.JwtAccessDeniedHandler;
+import com.zunza.pick.commons.security.jwt.JwtAuthenticationEntryPoint;
+import com.zunza.pick.commons.security.jwt.JwtAuthenticationFilter;
+import com.zunza.pick.commons.security.jwt.JwtLoginFilter;
+import com.zunza.pick.commons.security.jwt.JwtTokenProvider;
 import com.zunza.pick.member.repository.TokenRedisRepository;
 
 import lombok.RequiredArgsConstructor;

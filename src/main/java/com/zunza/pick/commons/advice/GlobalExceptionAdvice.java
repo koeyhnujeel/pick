@@ -1,4 +1,4 @@
-package com.zunza.pick.advice;
+package com.zunza.pick.commons.advice;
 
 import java.util.List;
 
@@ -8,8 +8,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.zunza.pick.exception.CustomException;
-import com.zunza.pick.commons.ErrorResponse;
+import com.zunza.pick.commons.advice.exception.CustomException;
 
 @RestControllerAdvice
 public class GlobalExceptionAdvice {

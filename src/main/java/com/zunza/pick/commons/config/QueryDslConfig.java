@@ -1,4 +1,4 @@
-package com.zunza.pick.config;
+package com.zunza.pick.commons.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

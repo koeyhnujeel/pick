@@ -1,4 +1,4 @@
-package com.zunza.pick.advice;
+package com.zunza.pick.commons.advice;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
@@ -9,8 +9,6 @@ import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
-
-import com.zunza.pick.commons.ApiResponse;
 
 import jakarta.servlet.http.HttpServletResponse;
 

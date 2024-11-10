@@ -1,4 +1,4 @@
-package com.zunza.pick.security.jwt;
+package com.zunza.pick.commons.security.jwt;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -12,12 +12,12 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.zunza.pick.commons.ApiResponse;
-import com.zunza.pick.commons.ErrorResponse;
+import com.zunza.pick.commons.advice.ApiResponse;
+import com.zunza.pick.commons.advice.ErrorResponse;
 import com.zunza.pick.member.repository.TokenRedisRepository;
 import com.zunza.pick.member.controller.request.LoginRequest;
 import com.zunza.pick.member.controller.response.TokenResponse;
-import com.zunza.pick.security.CustomUserDetails;
+import com.zunza.pick.commons.security.CustomUserDetails;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.HttpServletRequest;

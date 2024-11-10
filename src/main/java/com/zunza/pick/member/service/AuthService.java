@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.zunza.pick.exception.DuplicateNicknameException;
-import com.zunza.pick.exception.DuplicatePhoneException;
-import com.zunza.pick.exception.InvalidRefreshTokenException;
-import com.zunza.pick.exception.MemberNotFoundException;
+import com.zunza.pick.commons.advice.exception.DuplicateNicknameException;
+import com.zunza.pick.commons.advice.exception.DuplicatePhoneException;
+import com.zunza.pick.commons.advice.exception.InvalidRefreshTokenException;
+import com.zunza.pick.commons.advice.exception.MemberNotFoundException;
 import com.zunza.pick.member.entity.MemberType;
 import com.zunza.pick.member.controller.dto.SignupDto;
 import com.zunza.pick.member.controller.dto.RefreshTokenDto;
@@ -17,10 +17,10 @@ import com.zunza.pick.member.controller.dto.VerifyNicknameDto;
 import com.zunza.pick.member.controller.dto.VerifyPhoneDto;
 import com.zunza.pick.member.entity.Member;
 import com.zunza.pick.member.repository.MemberRepository;
-import com.zunza.pick.exception.DuplicateEmailException;
+import com.zunza.pick.commons.advice.exception.DuplicateEmailException;
 import com.zunza.pick.member.repository.TokenRedisRepository;
 import com.zunza.pick.member.controller.response.TokenResponse;
-import com.zunza.pick.security.jwt.JwtTokenProvider;
+import com.zunza.pick.commons.security.jwt.JwtTokenProvider;
 
 import lombok.RequiredArgsConstructor;
 
