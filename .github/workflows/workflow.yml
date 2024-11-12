@@ -100,11 +100,10 @@ jobs:
           password: ${{ secrets.NCP_SERVER_SSH_PASSWORD }}
           port: ${{ secrets.NCP_SERVER_PORT }}
           script: |
-            echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+            docker stop $(docker ps -a -q) || true
+            docker rm $(docker ps -a -q) || true
             docker pull ${{ secrets.DOCKER_USERNAME }}/pick-app:latest
-            docker stop pick-app || true
-            docker rm pick-app || true
-            docker run -d --name pick-app -p 8080:8080 \
+            docker run -d --name pick-app ${{ secrets.DOCKER_USERNAME }}/pick-app -p 8080:8080 \
                        -e MYSQL_URL=${{ secrets.MYSQL_URL }} \
                        -e MYSQL_USERNAME=${{ secrets.MYSQL_USERNAME }} \
                        -e MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }} \
@@ -131,11 +130,10 @@ jobs:
           password: ${{ secrets.NCP_SERVER_SSH_PASSWORD }}
           port: ${{ secrets.NCP_SERVER_PORT }}
           script: |
-            echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+            docker stop $(docker ps -a -q) || true
+            docker rm $(docker ps -a -q) || true
             docker pull ${{ secrets.DOCKER_USERNAME }}/pick-app:latest
-            docker stop pick-app || true
-            docker rm pick-app || true
-            docker run -d --name pick-app -p 8080:8080 \
+            docker run -d --name pick-app ${{ secrets.DOCKER_USERNAME }}/pick-app -p 8080:8080 \
                        -e MYSQL_URL=${{ secrets.MYSQL_URL }} \
                        -e MYSQL_USERNAME=${{ secrets.MYSQL_USERNAME }} \
                        -e MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }} \
