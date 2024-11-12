@@ -104,7 +104,21 @@ jobs:
             docker rm $(docker ps -a -q) || true
             docker pull ${{ secrets.DOCKER_USERNAME }}/pick-app:latest
             docker run -d --name pick-app ${{ secrets.DOCKER_USERNAME }}/pick-app -p 8080:8080 \
-                       --env-file .env
+                       --env MYSQL_URL=${{ secrets.MYSQL_URL }} \
+                       --env MYSQL_USERNAME=${{ secrets.MYSQL_USERNAME }} \
+                       --env MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }} \
+                       --env REDIS_HOST=${{ secrets.REDIS_HOST }} \
+                       --env REDIS_PORT=${{ secrets.REDIS_PORT }} \
+                       --env JWT_SECRET=${{ secrets.JWT_SECRET }} \
+                       --env JWT_ACCESS_TOKEN_VALIDITY=${{ secrets.JWT_ACCESS_TOKEN_VALIDITY }} \
+                       --env JWT_REFRESH_TOKEN_VALIDITY=${{ secrets.JWT_REFRESH_TOKEN_VALIDITY }} \
+                       --env OBJECT_STORAGE_ACCESS_KEY=${{ secrets.OBJECT_STORAGE_ACCESS_KEY }} \
+                       --env OBJECT_STORAGE_SECRET_KEY=${{ secrets.OBJECT_STORAGE_SECRET_KEY }} \
+                       --env OBJECT_STORAGE_REGION=${{ secrets.OBJECT_STORAGE_REGION }} \ 
+                       --env OBJECT_STORAGE_ENDPOINT=${{ secrets.OBJECT_STORAGE_ENDPOINT }} \
+                       --env OBJECT_STORAGE_BUCKET_NAME=${{ secrets.OBJECT_STORAGE_BUCKET_NAME }} \
+                       --env IMAGE_MAIN_TEST=${{ secrets.IMAGE_MAIN_TEST }} \
+                       --env IMAGE_DETAIL_TEST=${{ secrets.IMAGE_DETAIL_TEST }} \
 
       - name: Deploy to Server 2
         uses: appleboy/ssh-action@v0.1.7
@@ -118,4 +132,18 @@ jobs:
             docker rm $(docker ps -a -q) || true
             docker pull ${{ secrets.DOCKER_USERNAME }}/pick-app:latest
             docker run -d --name pick-app ${{ secrets.DOCKER_USERNAME }}/pick-app -p 8080:8080 \
-                       --env-file .env
+                       --env MYSQL_URL=${{ secrets.MYSQL_URL }} \
+                       --env MYSQL_USERNAME=${{ secrets.MYSQL_USERNAME }} \
+                       --env MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }} \
+                       --env REDIS_HOST=${{ secrets.REDIS_HOST }} \
+                       --env REDIS_PORT=${{ secrets.REDIS_PORT }} \
+                       --env JWT_SECRET=${{ secrets.JWT_SECRET }} \
+                       --env JWT_ACCESS_TOKEN_VALIDITY=${{ secrets.JWT_ACCESS_TOKEN_VALIDITY }} \
+                       --env JWT_REFRESH_TOKEN_VALIDITY=${{ secrets.JWT_REFRESH_TOKEN_VALIDITY }} \
+                       --env OBJECT_STORAGE_ACCESS_KEY=${{ secrets.OBJECT_STORAGE_ACCESS_KEY }} \
+                       --env OBJECT_STORAGE_SECRET_KEY=${{ secrets.OBJECT_STORAGE_SECRET_KEY }} \
+                       --env OBJECT_STORAGE_REGION=${{ secrets.OBJECT_STORAGE_REGION }} \ 
+                       --env OBJECT_STORAGE_ENDPOINT=${{ secrets.OBJECT_STORAGE_ENDPOINT }} \
+                       --env OBJECT_STORAGE_BUCKET_NAME=${{ secrets.OBJECT_STORAGE_BUCKET_NAME }} \
+                       --env IMAGE_MAIN_TEST=${{ secrets.IMAGE_MAIN_TEST }} \
+                       --env IMAGE_DETAIL_TEST=${{ secrets.IMAGE_DETAIL_TEST }} \
