@@ -103,6 +103,7 @@ Temporary Items
 ### Gradle ###
 .gradle
 **/build/
+!/build/libs/
 !src/**/build/
 
 application-dev.yml
