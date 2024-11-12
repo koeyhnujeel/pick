@@ -136,8 +136,8 @@ jobs:
             docker rm pick-app || true
             docker run -d --name pick-app -p 8080:8080 \
                        --env-file .env \
-                       -Dspring.profiles.active=prod \
-                       ${{ secrets.DOCKER_USERNAME }}/pick-app:latest
+                       ${{ secrets.DOCKER_USERNAME }}/pick-app:latest \
+                       java -Dspring.profiles.active=prod -jar /app.jar
 
       - name: Deploy to Server 2
         uses: appleboy/ssh-action@v0.1.7
@@ -152,5 +152,5 @@ jobs:
             docker rm pick-app || true
             docker run -d --name pick-app -p 8080:8080 \
                        --env-file .env \
-                       -Dspring.profiles.active=prod \
-                       ${{ secrets.DOCKER_USERNAME }}/pick-app:latest
+                       ${{ secrets.DOCKER_USERNAME }}/pick-app:latest \
+                       java -Dspring.profiles.active=prod -jar /app.jar
