@@ -1,7 +1,7 @@
 # 빌드 스테이지
 FROM eclipse-temurin:17 AS builder
 WORKDIR /src/source
-COPY ..
+COPY . .
 RUN ./gradlew bootJar
 
 # 실행 스테이지
