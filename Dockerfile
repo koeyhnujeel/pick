@@ -9,4 +9,4 @@ FROM eclipse-temurin:17
 WORKDIR /opt/app
 COPY --from=builder /src/source/build/libs/*.jar /opt/app/pick-app.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "pick-app.jar"]
+ENTRYPOINT ["java", "-Dspring.profiles.active=prod", "-jar", "pick-app.jar"]
