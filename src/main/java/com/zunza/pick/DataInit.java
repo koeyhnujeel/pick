@@ -107,6 +107,7 @@ public class DataInit implements CommandLineRunner {
 			ProductImage detailImage = ProductImage.of(saved, detailImageUrl);
 			productImageRepository.save(mainImage);
 			productImageRepository.save(detailImage);
+
 		}
 	}
 }
