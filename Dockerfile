@@ -7,6 +7,6 @@ RUN ./gradlew bootJar
 # 실행 스테이지
 FROM eclipse-temurin:17
 WORKDIR /opt/app
-COPY --from=builder /src/source/build/libs/*.jar /opt/app/app.jar
+COPY --from=builder /src/source/build/libs/*.jar /opt/app/pick-app.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "pick-app.jar"]
