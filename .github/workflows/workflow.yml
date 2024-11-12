@@ -51,7 +51,7 @@ jobs:
         run: |
           echo "MYSQL_URL=${{ secrets.MYSQL_URL }}" >> .env
           echo "MYSQL_USERNAME=${{ secrets.MYSQL_USERNAME }} >> .env
-          echo "MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }} >> .evn
+          echo "MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }} >> .env
           echo "REDIS_HOST=${{ secrets.REDIS_HOST }} >> .env
           echo "REDIS_PORT=${{ secrets.REDIS_PORT }} >> .env
           echo "JWT_SECRET=${{ secrets.JWT_SECRET }} >> .env
