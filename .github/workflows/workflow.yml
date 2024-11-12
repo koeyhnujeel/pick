@@ -68,7 +68,7 @@ jobs:
   # 3. 클라우드 배포/main 브랜치에 푸시 됐을 때만
   deploy_to_ncp:
     if: github.ref == 'refs/heads/main'
-    needs: build_image
+    needs: package
     runs-on: ubuntu-latest
   
     steps:
