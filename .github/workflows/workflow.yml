@@ -108,7 +108,7 @@ jobs:
         with:
           host: ${{ secrets.REDIS_SERVER_HOST }}
           username: ${{ secrets.NCP_SERVER_USER }}
-          password: ${{ secrets.SERVER_SSH_KEY }}
+          password: ${{ secrets.NCP_SERVER_SSH_PASSWORD }}
           port: ${{ secrets.NCP_SERVER_PORT }}
           script: |
             sudo systemctl start redis
@@ -118,7 +118,7 @@ jobs:
         with:
           host: ${{ secrets.NGINX_SERVER_HOST }}
           username: ${{ secrets.NCP_SERVER_USER }}
-          password: ${{ secrets.NCP_SERVER_SSH_KEY }}
+          password: ${{ secrets.NCP_SERVER_SSH_PASSWORD }}
           port: ${{ secrets.NCP_SERVER_PORT }}
           script: |
             sudo systemctl start nginx
@@ -128,7 +128,7 @@ jobs:
         with:
           host: ${{ secrets.APP_SERVER_1_HOST }}
           username: ${{ secrets.NCP_SERVER_USER }}
-          password: ${{ secrets.NCP_SERVER_SSH_KEY }}
+          password: ${{ secrets.NCP_SERVER_SSH_PASSWORD }}
           port: ${{ secrets.NCP_SERVER_PORT }}
           script: |
             docker pull ${{ secrets.DOCKER_USERNAME }}/pick-app:latest
@@ -144,7 +144,7 @@ jobs:
         with:
           host: ${{ secrets.APP_SERVER_2_HOST }}
           username: ${{ secrets.NCP_SERVER_USER }}
-          password: ${{ secrets.NCP_SERVER_SSH_KEY }}
+          password: ${{ secrets.NCP_SERVER_SSH_PASSWORD }}
           port: ${{ secrets.NCP_SERVER_PORT }}
           script: |
             docker pull ${{ secrets.DOCKER_USERNAME }}/pick-app:latest
