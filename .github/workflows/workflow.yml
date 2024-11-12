@@ -119,7 +119,6 @@ jobs:
                        -e OBJECT_STORAGE_BUCKET_NAME=${{ secrets.OBJECT_STORAGE_BUCKET_NAME }} \
                        -e IMAGE_MAIN_TEST=${{ secrets.IMAGE_MAIN_TEST }} \
                        -e IMAGE_DETAIL_TEST=${{ secrets.IMAGE_DETAIL_TEST }} \
-                       ${{ secrets.DOCKER_USERNAME }}/pick-app:latest \
                        java -Dspring.profiles.active=prod -jar /pick-app.jar
 
       - name: Deploy to Server 2
@@ -149,5 +148,4 @@ jobs:
                        -e OBJECT_STORAGE_BUCKET_NAME=${{ secrets.OBJECT_STORAGE_BUCKET_NAME }} \
                        -e IMAGE_MAIN_TEST=${{ secrets.IMAGE_MAIN_TEST }} \
                        -e IMAGE_DETAIL_TEST=${{ secrets.IMAGE_DETAIL_TEST }} \
-                       ${{ secrets.DOCKER_USERNAME }}/pick-app:latest \
                        java -Dspring.profiles.active=prod -jar /pick-app.jar
