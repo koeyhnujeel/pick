@@ -1,7 +1,3 @@
 spring:
-  output:
-    ansi:
-      enabled: ALWAYS
-
   profiles:
-    active: sensitive
+    active: dev
