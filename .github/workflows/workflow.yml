@@ -81,7 +81,7 @@ jobs:
           port: ${{ secrets.NCP_SERVER_PORT }}
           script: |
             docker compose down
-            docker compose up
+            docker compose up -d
 
       - name: Deploy to Server 1
         uses: appleboy/ssh-action@v0.1.7
@@ -92,7 +92,7 @@ jobs:
           port: ${{ secrets.NCP_SERVER_PORT }}
           script: |
             docker compose down
-            docker compose up
+            docker compose up -d
 
       - name: Deploy to Server 2
         uses: appleboy/ssh-action@v0.1.7
@@ -103,4 +103,4 @@ jobs:
           port: ${{ secrets.NCP_SERVER_PORT }}
           script: |
             docker compose down
-            docker compose up
+            docker compose up -d
