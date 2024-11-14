@@ -72,25 +72,16 @@ jobs:
     runs-on: ubuntu-latest
   
     steps:
-      - name: Start Redis
+      - name: Start Mysql
         uses: appleboy/ssh-action@v0.1.7
         with:
-          host: ${{ secrets.REDIS_SERVER_HOST }}
+          host: ${{ secrets.MYSQL_SERVER_HOST }}
           username: ${{ secrets.NCP_SERVER_USER }}
           password: ${{ secrets.NCP_SERVER_SSH_PASSWORD }}
           port: ${{ secrets.NCP_SERVER_PORT }}
           script: |
-            sudo systemctl start redis
-            
-      - name: Start Nginx
-        uses: appleboy/ssh-action@v0.1.7
-        with:
-          host: ${{ secrets.NGINX_SERVER_HOST }}
-          username: ${{ secrets.NCP_SERVER_USER }}
-          password: ${{ secrets.NCP_SERVER_SSH_PASSWORD }}
-          port: ${{ secrets.NCP_SERVER_PORT }}
-          script: |
-            sudo systemctl start nginx
+            docker-compose down
+            docker-compose up -d
 
       - name: Deploy to Server 1
         uses: appleboy/ssh-action@v0.1.7
