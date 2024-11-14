@@ -80,7 +80,7 @@ jobs:
           password: ${{ secrets.NCP_SERVER_SSH_PASSWORD }}
           port: ${{ secrets.NCP_SERVER_PORT }}
           script: |
-            docker compose down
+            docker compose rm -s
             docker compose up -d
 
       - name: Deploy to Server 1
@@ -91,7 +91,8 @@ jobs:
           password: ${{ secrets.NCP_SERVER_SSH_PASSWORD }}
           port: ${{ secrets.NCP_SERVER_PORT }}
           script: |
-            docker compose down
+            docker compose rm -s
+            docker compose pull
             docker compose up -d
 
       - name: Deploy to Server 2
@@ -102,6 +103,7 @@ jobs:
           password: ${{ secrets.NCP_SERVER_SSH_PASSWORD }}
           port: ${{ secrets.NCP_SERVER_PORT }}
           script: |
-            docker compose down
+            docker compose rm -s
+            docker compose pull
             docker compose up -d
 
