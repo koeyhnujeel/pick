@@ -1,4 +1,4 @@
-package com.zunza.pick.external.objectStorage.controller;
+package com.zunza.pick.infrastructure.objectStorage.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.zunza.pick.external.objectStorage.controller.response.UploadImageResponse;
-import com.zunza.pick.external.objectStorage.service.ObjectStorageService;
+import com.zunza.pick.infrastructure.objectStorage.controller.response.UploadImageResponse;
+import com.zunza.pick.infrastructure.objectStorage.service.ObjectStorageService;
 
 import lombok.RequiredArgsConstructor;
 

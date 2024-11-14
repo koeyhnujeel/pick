@@ -1,4 +1,4 @@
-package com.zunza.pick.external.objectStorage.controller.response;
+package com.zunza.pick.infrastructure.objectStorage.controller.response;
 
 import java.util.List;
 

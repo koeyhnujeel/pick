@@ -1,4 +1,4 @@
-package com.zunza.pick.external.objectStorage.service;
+package com.zunza.pick.infrastructure.objectStorage.service;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import com.amazonaws.services.s3.model.AmazonS3Exception;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.zunza.pick.external.objectStorage.controller.response.UploadImageResponse;
+import com.zunza.pick.infrastructure.objectStorage.controller.response.UploadImageResponse;
 
 import lombok.RequiredArgsConstructor;
 
