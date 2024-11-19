@@ -38,8 +38,6 @@ dependencies {
 	//redis
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
-	implementation 'org.flywaydb:flyway-core:10.19.0'
-	implementation 'org.flywaydb:flyway-mysql:10.19.0'
 	implementation 'com.mysql:mysql-connector-j'
 
 	// NCP Object Storage 를 위한
