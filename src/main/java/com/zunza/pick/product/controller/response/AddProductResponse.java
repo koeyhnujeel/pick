@@ -1,6 +1,6 @@
 package com.zunza.pick.product.controller.response;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.zunza.pick.product.entity.Category;
@@ -20,12 +20,12 @@ public class AddProductResponse {
 	private Category category;
 	private ProductStatus status;
 	private List<String> imageUrls;
-	private Instant createdAt;
-	private Instant modifiedDt;
+	private LocalDateTime createdAt;
+	private LocalDateTime modifiedDt;
 
 	@Builder
 	private AddProductResponse(Long id, String name, int price, String description, int stock, Category category,
-		ProductStatus status, List<String> imageUrls, Instant createdAt, Instant modifiedDt) {
+		ProductStatus status, List<String> imageUrls, LocalDateTime createdAt, LocalDateTime modifiedDt) {
 		this.id = id;
 		this.name = name;
 		this.price = price;

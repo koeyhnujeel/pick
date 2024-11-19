@@ -1,10 +1,13 @@
 package com.zunza.pick.commons;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
@@ -23,8 +26,10 @@ public class BaseEntity {
 	private Long id;
 
 	@CreatedDate
-	private Instant createdDt = Instant.now();
+	@JsonSerialize(using = LocalDateTimeSerializer.class)
+	private LocalDateTime createdDt = LocalDateTime.now();
 
 	@LastModifiedDate
-	private Instant modifiedDt = Instant.now();
+	@JsonSerialize(using = LocalDateTimeSerializer.class)
+	private LocalDateTime modifiedDt = LocalDateTime.now();
 }
