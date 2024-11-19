@@ -39,7 +39,7 @@ jobs:
           IMAGE_MAIN_TEST: ${{ secrets.IMAGE_MAIN_TEST }}
           IMAGE_DETAIL_TEST: ${{ secrets.IMAGE_DETAIL_TEST }}
 
-  # 2. 도커 이미지 빌드 및 허브 푸시/main 브랜치에 푸시 됐을 때만
+  # 2. 도커 이미지 빌드 및 허브 푸시
   package:
     name: Package and Publish
     if: github.ref == 'refs/heads/main'
@@ -65,7 +65,7 @@ jobs:
           docker push ${{ secrets.DOCKER_USERNAME }}/pick-app:${{ github.sha }}
           docker push ${{ secrets.DOCKER_USERNAME }}/pick-app:latest
 
-  # 3. 클라우드 배포/main 브랜치에 푸시 됐을 때만
+  # 3. 클라우드 배포
   deploy_to_ncp:
     if: github.ref == 'refs/heads/main'
     needs: package
@@ -80,7 +80,7 @@ jobs:
           password: ${{ secrets.NCP_SERVER_SSH_PASSWORD }}
           port: ${{ secrets.NCP_SERVER_PORT }}
           script: |
-            docker compose rm -s
+            docker compose down
             docker compose up -d
 
       - name: Deploy to Server 1
@@ -91,7 +91,7 @@ jobs:
           password: ${{ secrets.NCP_SERVER_SSH_PASSWORD }}
           port: ${{ secrets.NCP_SERVER_PORT }}
           script: |
-            docker compose rm -s
+            docker compose down
             docker compose pull
             docker compose up -d
 
@@ -103,7 +103,6 @@ jobs:
           password: ${{ secrets.NCP_SERVER_SSH_PASSWORD }}
           port: ${{ secrets.NCP_SERVER_PORT }}
           script: |
-            docker compose rm -s
+            docker compose down
             docker compose pull
             docker compose up -d
-
