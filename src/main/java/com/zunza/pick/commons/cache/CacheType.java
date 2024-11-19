@@ -5,7 +5,9 @@ import lombok.Getter;
 @Getter
 public enum CacheType {
 
-	PRODUCTS_CACHE("productsCache", 10, 1000);
+	PRODUCTS_CACHE("productsCache", 10, 1000),
+	EVENT_CACHE("eventCache", 10, 100),
+	COUPON_CACHE("couponCache", 10, 100);
 
 	private String cacheName;
 	private long expireAfterWrite;
